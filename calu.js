@@ -1,92 +1,107 @@
-var currentOperation,operand1,operand2,result;
+var currentOperation,result;	
 	
 const buttonPressed=(num)=>{
 	var changeField=document.querySelector("#resultField");
-	if (currentOperation&&(!operand2)) 
+	var changeOp1=document.querySelector("#op1");
+	var changeOp2=document.querySelector("#op2");
+	var operatorField=document.querySelector("#operator");
+
+	if ((!operatorField.innerHTML)) 
 	{
-		changeField.innerHTML=num;
+		changeOp1.innerHTML+=num;
+	}
+	else if (changeField.innerHTML) 
+	{
+		changeOp1.innerHTML=num;
+		changeField.innerHTML='';
+		changeOp2.innerHTML='';
+		operatorField.innerHTML='';
 	}
 	else
 	{
-		changeField.innerHTML+=num;
+		changeOp2.innerHTML+=num;
 
-	}
-	if (currentOperation) 
-	{
-		operand2=parseInt(changeField.innerHTML);
 	}
 }
 const clearAll=()=>{
 	var changeField=document.querySelector("#resultField");
+	var changeOp1=document.querySelector("#op1");
+	var changeOp2=document.querySelector("#op2");
+	var operatorField=document.querySelector("#operator");
 	changeField.innerHTML="";
-	currentOperation=null;
-	operand2=null;
-	operand1=null;
+	changeOp1.innerHTML="";
+	changeOp2.innerHTML="";
+	operatorField.innerHTML="";
+	
+	currentOperation='';
+	//changeOp2.innerHTML='';
+	//changeOp1.innerHTML='';changeOp1.innerHTML
 }
 const buttonOp=(operation)=>{
 	var changeField=document.querySelector("#resultField");
-	if(operand2!==null)
+	var changeOp1=document.querySelector("#op1");
+	var changeOp2=document.querySelector("#op2");
+	var operatorField=document.querySelector("#operator");
+	console.log(changeOp1.innerHTML);
+	console.log((changeOp2.innerHTML==''));
+	if(changeOp2.innerHTML!=='')
 	{
-		operand2=parseInt(changeField.innerHTML);
-		switch(currentOperation)
+		//changeOp2.innerHTML=parseFloat(changeField.innerHTML);
+		if (changeOp1.innerHTML==='') {
+			changeOp1.innerHTML=0;
+		}
+		switch(operatorField.innerHTML)
 		{
 			case '+':
-				result=operand1+operand2;
-				changeField.innerHTML=result;
+				result=(parseFloat(changeOp1.innerHTML))+(parseFloat(changeOp2.innerHTML));
 				break;
 			case '-':
-				result=operand1-operand2;
-				changeField.innerHTML=result;
+				result=(parseFloat(changeOp1.innerHTML))-(parseFloat(changeOp2.innerHTML));
 				break;
 			case '*':
-				result=operand1*operand2;
-				changeField.innerHTML=result;
+				result=(parseFloat(changeOp1.innerHTML))*(parseFloat(changeOp2.innerHTML));
 				break;
 			case '/':
-				result=operand1/operand2;
-				changeField.innerHTML=result;
+				result=(parseFloat(changeOp1.innerHTML))/(parseFloat(changeOp2.innerHTML));
 				break;
 
 		}
-		operand1=result;
-		operand2=null;
+		changeOp1.innerHTML=result;
+		changeOp2.innerHTML='';
+		changeField.innerHTML='';
 	}
-	else
-	{
-		operand1=parseInt(changeField.innerHTML);
-	}
-	currentOperation=operation;
-	changeField.innerHTML=operand1;
+	console.log(changeOp1.innerHTML);
+	
+	operatorField.innerHTML=operation;
 }
 const buttonEqual=()=>{
 	var changeField=document.querySelector("#resultField");
-	console.log(parseInt(changeField.innerHTML));
-	operand2=parseInt(changeField.innerHTML);
-	switch(currentOperation)
-		{
-			case '+':
-				result=operand1+operand2;
-				changeField.innerHTML=result;
-				break;
-			case '-':
-				result=operand1-operand2;
-				changeField.innerHTML=result;
-				break;
-			case '*':
-				result=operand1*operand2;
-				changeField.innerHTML=result;
-				break;
-			case '/':
-				result=operand1/operand2;
-				changeField.innerHTML=result;
-				break;
+	var changeOp1=document.querySelector("#op1");
+	var changeOp2=document.querySelector("#op2");
+	var operatorField=document.querySelector("#operator");
 
-		}
+	console.log(parseFloat(changeField.innerHTML));
+	//changeOp2.innerHTML=parseFloat(changeField.innerHTML);
+	switch(operatorField.innerHTML)
+	{
+		case '+':
+			result=(parseFloat(changeOp1.innerHTML))+(parseFloat(changeOp2.innerHTML));
+			break;
+		case '-':
+			result=(parseFloat(changeOp1.innerHTML))-(parseFloat(changeOp2.innerHTML));
+			break;
+		case '*':
+			result=(parseFloat(changeOp1.innerHTML))*(parseFloat(changeOp2.innerHTML));
+			break;
+		case '/':
+			result=(parseFloat(changeOp1.innerHTML))/(parseFloat(changeOp2.innerHTML));
+			break;
+	}
 
 	//changeField.innerHTML=result;
-	operand1=result;
-	operand2=null;
-	result=null;
-	currentOperation=null;
+	changeField.innerHTML=result;
+	//changeOp2.innerHTML='';
+	//result='';
+	//currentOperation='';
 
 }

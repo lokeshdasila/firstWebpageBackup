@@ -52,7 +52,7 @@
 		
 	</div>
 	<div>
-		<button class="button buttonDot">.</button>
+		<button class="button buttonDot" onclick="buttonPressed('.')">.</button>
 		<button class="button button0" onclick="buttonPressed(0)">0</button>
 		<button class="button buttonClear" onclick="clearAll()">AC</button>
 		<button class="button button3" onclick="buttonOp('/')">/</button>
@@ -60,7 +60,10 @@
 		
 	</div>
 	<div>
-		<h2 id="resultField"> </h2>
+		<h2 id="op1"></h2>
+		<h2 id="operator"></h2>
+		<h2 id="op2"></h2>
+		<h2 id="resultField"></h2>
 
 	</div>
 </body>
